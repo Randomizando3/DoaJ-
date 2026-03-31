@@ -1,6 +1,6 @@
 # Doa Já
 
-# Parte do Neres
+<!-- # Parte do Neres -->
 
 **Doa Já** é uma plataforma web de doação de objetos desenvolvida como
 projeto acadêmico. O objetivo do sistema é facilitar a conexão entre
@@ -10,7 +10,7 @@ precisam desses itens.
 A aplicação permite que usuários publiquem objetos para doação,
 visualizem itens disponíveis e manifestem interesse em receber
 determinados itens.
-
+<!-- # Parte do Neres -->
 ------------------------------------------------------------------------
 
 # Objetivo do Projeto
