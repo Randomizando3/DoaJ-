@@ -1,6 +1,9 @@
 # Doa Já
 
-#Parte do Neres
+<!-- # Parte do Neres -->
+
+
+# Objetivo do Projeto
 
 **Doa Já** é uma plataforma web de doação de objetos desenvolvida como
 projeto acadêmico. O objetivo do sistema é facilitar a conexão entre
@@ -11,17 +14,8 @@ A aplicação permite que usuários publiquem objetos para doação,
 visualizem itens disponíveis e manifestem interesse em receber
 determinados itens.
 
-------------------------------------------------------------------------
 
-# Objetivo do Projeto
-
-O projeto tem como objetivo demonstrar a construção de uma aplicação web
-completa utilizando tecnologias simples e acessíveis.
-
-Além disso, busca incentivar práticas de reaproveitamento de recursos,
-promovendo o compartilhamento e a solidariedade entre pessoas da
-comunidade.
-
+<!-- # Parte do Neres -->
 ------------------------------------------------------------------------
 
 # Tecnologias Utilizadas
