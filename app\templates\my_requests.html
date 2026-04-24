@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Meus pedidos - Doa Ja{% endblock %}
+
+{% block content %}
+<main class="page">
+    <section class="page-header">
+        <div>
+            <h1>Meus pedidos</h1>
+            <p>Itens que voce pediu para receber.</p>
+        </div>
+    </section>
+
+    {% if pedidos %}
+        <section class="request-list">
+            {% for pedido in pedidos %}
+                <article class="panel request-card">
+                    <div class="request-top">
+                        <div>
+                            <h3>{{ pedido['nome_anuncio'] }}</h3>
+                            <p>{{ pedido['localizacao_anuncio'] }}</p>
+                        </div>
+                        <span class="badge badge-{{ pedido['status'] }}">{{ pedido['status'] }}</span>
+                    </div>
+                    <p><strong>Doador:</strong> {{ pedido['nome_doador'] }}</p>
+                    <p><strong>Mensagem:</strong> {{ pedido['mensagem'] }}</p>
+                </article>
+            {% endfor %}
+        </section>
+    {% else %}
+        <section class="empty-box">
+            <p>Voce ainda nao fez pedidos.</p>
+        </section>
+    {% endif %}
+</main>
+{% endblock %}

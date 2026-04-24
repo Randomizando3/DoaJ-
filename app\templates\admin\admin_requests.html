@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Pedidos - Doa Ja{% endblock %}
+
+{% block content %}
+<main class="page">
+    <section class="page-header">
+        <div>
+            <h1>Pedidos</h1>
+            <p>Solicitacoes feitas pelos usuarios.</p>
+        </div>
+    </section>
+
+    <section class="table-card">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Produto</th>
+                    <th>Solicitante</th>
+                    <th>Doador</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pedido in pedidos %}
+                    <tr>
+                        <td>{{ pedido['id'] }}</td>
+                        <td>{{ pedido['nome_anuncio'] }}</td>
+                        <td>{{ pedido['nome_solicitante'] }}</td>
+                        <td>{{ pedido['nome_doador'] }}</td>
+                        <td>{{ pedido['status'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</main>
+{% endblock %}

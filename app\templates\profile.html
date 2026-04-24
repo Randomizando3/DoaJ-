@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Perfil - Doa Ja{% endblock %}
+
+{% block content %}
+<main class="page">
+    <section class="profile-hero">
+        <div class="profile-avatar">
+            {{ usuario['nome'][0] }}
+        </div>
+        <div class="profile-info">
+            <h1>{{ usuario['nome'] }}</h1>
+            <p>{{ usuario['bio'] }}</p>
+            <div class="profile-tags">
+                <span>{{ usuario['tipo'] }}</span>
+                <span>{{ usuario['localizacao'] }}</span>
+                <span>Nota {{ usuario['avaliacao'] }}</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="page-header">
+        <div>
+            {% if publico %}
+                <h2>Anuncios publicos</h2>
+            {% else %}
+                <h2>Seus anuncios</h2>
+            {% endif %}
+        </div>
+    </section>
+
+    {% if itens %}
+        <section class="grid">
+            {% for item in itens %}
+                <article class="card">
+                    <a href="{{ url_for('item.item_detail', item_id=item['id']) }}" class="card-image-link">
+                        <img src="{{ item['foto'] }}" alt="{{ item['nome'] }}">
+                    </a>
+                    <div class="card-content">
+                        <div class="card-top">
+                            <span class="badge badge-{{ item['status'] }}">{{ item['status'] }}</span>
+                            <span class="mini-text">{{ item['categoria'] }}</span>
+                        </div>
+                        <h3 class="card-title">{{ item['nome'] }}</h3>
+                        <p class="card-desc">{{ item['descricao'] }}</p>
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+    {% else %}
+        <section class="empty-box">
+            <p>Esse perfil ainda nao tem anuncios.</p>
+        </section>
+    {% endif %}
+</main>
+{% endblock %}

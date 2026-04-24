@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Produtos - Doa Ja{% endblock %}
+
+{% block content %}
+<main class="page">
+    <section class="page-header">
+        <div>
+            <h1>Produtos anunciados</h1>
+            <p>Lista geral dos itens cadastrados na plataforma.</p>
+        </div>
+    </section>
+
+    <section class="products-section no-top-padding">
+        <div class="grid">
+            {% for item in itens %}
+                <article class="card">
+                    <a href="{{ url_for('item.item_detail', item_id=item['id']) }}" class="card-image-link">
+                        <img src="{{ item['foto'] }}" alt="{{ item['nome'] }}">
+                    </a>
+                    <div class="card-content">
+                        <div class="card-top">
+                            <span class="badge badge-{{ item['status'] }}">{{ item['status'] }}</span>
+                            <span class="mini-text">{{ item['localizacao'] }}</span>
+                        </div>
+                        <h3 class="card-title">{{ item['nome'] }}</h3>
+                        <p class="card-desc">{{ item['descricao'] }}</p>
+                        <div class="card-footer">
+                            <span class="mini-text">{{ item['categoria'] }}</span>
+                            <a href="{{ url_for('item.item_detail', item_id=item['id']) }}" class="card-link">Detalhes</a>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}

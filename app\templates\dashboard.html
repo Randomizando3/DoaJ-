@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Doa Ja{% endblock %}
+
+{% block content %}
+<main class="page">
+    <section class="page-header">
+        <div>
+            <h1>Dashboard</h1>
+            <p>Resumo simples para acompanhar a plataforma e os seus dados.</p>
+        </div>
+        <div class="page-actions">
+            <a href="{{ url_for('item.create_item') }}" class="btn-primary-page">Novo anuncio</a>
+            <a href="{{ url_for('item.my_items') }}" class="btn-secondary-page">Meus anuncios</a>
+        </div>
+    </section>
+
+    <section class="stats-grid">
+        <article class="stat-card">
+            <span>Total</span>
+            <strong>{{ resumo['total'] }}</strong>
+            <p>Total de itens cadastrados.</p>
+        </article>
+        <article class="stat-card">
+            <span>Doado</span>
+            <strong>{{ resumo['doados'] }}</strong>
+            <p>Itens que ja foram marcados como doados.</p>
+        </article>
+        <article class="stat-card">
+            <span>Restante</span>
+            <strong>{{ resumo['restantes'] }}</strong>
+            <p>Itens ainda disponiveis para solicitar.</p>
+        </article>
+        <article class="stat-card">
+            <span>Meus pedidos</span>
+            <strong>{{ meus_pedidos|length }}</strong>
+            <p>Pedidos ligados ao seu usuario.</p>
+        </article>
+    </section>
+
+    <section class="two-columns">
+        <div class="panel">
+            <h2>Seus anuncios</h2>
+            {% if meus_itens %}
+                <ul class="simple-list">
+                    {% for item in meus_itens %}
+                        <li>
+                            <div>
+                                <strong>{{ item['nome'] }}</strong>
+                                <span>{{ item['localizacao'] }}</span>
+                            </div>
+                            <span class="badge badge-{{ item['status'] }}">{{ item['status'] }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Voce ainda nao criou anuncios.</p>
+            {% endif %}
+        </div>
+
+        <div class="panel">
+            <h2>Seus pedidos</h2>
+            {% if meus_pedidos %}
+                <ul class="simple-list">
+                    {% for pedido in meus_pedidos %}
+                        <li>
+                            <div>
+                                <strong>{{ pedido['nome_anuncio'] }}</strong>
+                                <span>{{ pedido['nome_doador'] }}</span>
+                            </div>
+                            <span class="badge badge-{{ pedido['status'] }}">{{ pedido['status'] }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>Voce ainda nao fez pedidos.</p>
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock %}

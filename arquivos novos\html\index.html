@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoaJá - Plataforma de Doações</title>
+    <link rel="icon" type="image/png" href="../img/logo minimalista.png">
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="navbar-container"></div>
+
+    <!-- BARRA DE PESQUISA E BOTÕES DE FILTRO -->
+    <main>
+        <section class="search-section">
+            <div class="search-bar">
+                <input type="text" placeholder="Estou procurando por...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="filters">
+                <button class="filter-btn active" data-filter="todos">Todos</button>
+                <button class="filter-btn" data-filter="brinquedo"><i class="fas fa-gamepad"></i> Brinquedo</button>
+                <button class="filter-btn" data-filter="camiseta"><i class="fas fa-tshirt"></i> Camiseta</button>
+                <button class="filter-btn" data-filter="calca"><i class="fas fa-socks"></i> Calça</button>
+                <button class="filter-btn" data-filter="calcado"><i class="fas fa-shoe-prints"></i> Calçado</button>
+            </div>
+        </section>
+
+        <section class="products-section">
+            <div class="grid" id="product-grid">
+                </div>
+        </section>
+    </main>
+
+<footer class="footer-mini">
+        <div class="footer-content">
+            <p>&copy; 2026 DoaJá | Desenvolvido por Gabriel Landi, Gabriel Neres, Maximiliano e Noam Felix</p>
+            
+            <div class="footer-links">
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
