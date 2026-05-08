@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Doa Ja</title>
+    <link rel="icon" type="image/png" href="img/logo-minimalista.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo"><img src="img/logo.png" alt="Logo Doa Ja"></a>
+        <button class="menu-toggle" id="mobile-menu" type="button"><i class="fas fa-bars"></i></button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> INICIO</a></li>
+            <li><a href="chat.html"><i class="fas fa-comments"></i> CHAT</a></li>
+            <li><a href="meus-anuncios.html"><i class="fas fa-list"></i> MEUS ANUNCIOS</a></li>
+            <li><a href="anunciar.html" class="btn-anunciar"><i class="fas fa-plus-circle"></i> ANUNCIAR GRATIS</a></li>
+            <li><a href="login.html" class="btn-login" id="login-icon"><i class="fas fa-user"></i></a></li>
+        </ul>
+    </nav>
+
+    <main class="page">
+        <section class="panel">
+            <h1 id="perfil-nome">Usuario</h1>
+            <p>Tipo: <strong id="perfil-tipo"></strong></p>
+            <p>Localizacao: <strong id="perfil-localizacao"></strong></p>
+            <p>Avaliacao: <strong id="perfil-avaliacao"></strong></p>
+            <br>
+            <button class="btn-secondary-page" type="button" onclick="sair()">Sair</button>
+        </section>
+    </main>
+
+    <script src="js/dados.js"></script>
+    <script src="js/site.js"></script>
+</body>
+</html>

@@ -1,1 +1,39 @@
+{% extends "base.html" %}
 
+{% block title %}Inicio - Doa Ja{% endblock %}
+
+{% block content %}
+<main>
+    <section class="search-section">
+        <div class="search-bar">
+            <input type="text" id="busca-item" placeholder="Estou procurando por...">
+            <button type="button"><i class="fas fa-search"></i></button>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" type="button" data-filter="todos">Todos</button>
+            <button class="filter-btn" type="button" data-filter="brinquedo"><i class="fas fa-gamepad"></i> Brinquedo</button>
+            <button class="filter-btn" type="button" data-filter="camiseta"><i class="fas fa-shirt"></i> Camiseta</button>
+            <button class="filter-btn" type="button" data-filter="calca"><i class="fas fa-socks"></i> Calca</button>
+            <button class="filter-btn" type="button" data-filter="calcado"><i class="fas fa-shoe-prints"></i> Calcado</button>
+        </div>
+    </section>
+
+    <section class="products-section home-products-section">
+        <div class="grid home-grid" id="product-grid">
+            {% for item in itens %}
+                <article class="card home-card item-card" data-nome="{{ item['nome']|lower }}" data-descricao="{{ item['descricao']|lower }}" data-categoria="{{ item['categoria']|lower }}">
+                    <a href="{{ url_for('item.item_detail', item_id=item['id']) }}" class="card-image-link">
+                        <img src="{{ item['foto'] }}" alt="{{ item['nome'] }}">
+                    </a>
+                    <div class="card-content">
+                        <h3 class="card-title">{{ item['nome'] }}</h3>
+                        <p class="card-desc">{{ item['descricao'] }}</p>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+        <p class="empty-list hidden" id="empty-items">Nenhum produto encontrado.</p>
+    </section>
+</main>
+{% endblock %}
