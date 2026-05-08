@@ -1,1 +1,39 @@
+{% extends "base.html" %}
 
+{% block title %}Admin Usuarios - Doa Ja{% endblock %}
+
+{% block content %}
+<main class="page">
+    <section class="page-header">
+        <div>
+            <h1>Usuarios</h1>
+            <p>Lista simples dos usuarios cadastrados no banco.</p>
+        </div>
+    </section>
+
+    <section class="table-card">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Tipo</th>
+                    <th>Localizacao</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{ usuario['id'] }}</td>
+                        <td>{{ usuario['nome'] }}</td>
+                        <td>{{ usuario['email'] }}</td>
+                        <td>{{ usuario['tipo'] }}</td>
+                        <td>{{ usuario['localizacao'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</main>
+{% endblock %}

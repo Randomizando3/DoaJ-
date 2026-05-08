@@ -1,0 +1,751 @@
+{% extends "base.html" %}
+
+{% block title %}Documentacao - Doa Ja{% endblock %}
+
+{% block extra_head %}
+<style>
+    .doc-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 30px 24px 60px;
+    }
+
+    .doc-box {
+        background: #fff;
+        border: 1px solid #ececec;
+        border-radius: 18px;
+        padding: 24px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+        margin-bottom: 20px;
+    }
+
+    .doc-box h1,
+    .doc-box h2,
+    .doc-box h3 {
+        margin-bottom: 12px;
+    }
+
+    .doc-box p,
+    .doc-box li {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .doc-box ul {
+        padding-left: 20px;
+    }
+
+    .doc-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+        margin-top: 18px;
+    }
+
+    .doc-card {
+        background: #fafafa;
+        border: 1px solid #ececec;
+        border-radius: 14px;
+        padding: 18px;
+    }
+
+    .doc-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 14px;
+    }
+
+    .doc-table th,
+    .doc-table td {
+        border-bottom: 1px solid #efefef;
+        padding: 12px;
+        text-align: left;
+        vertical-align: top;
+    }
+
+    .doc-table th {
+        color: #444;
+        width: 25%;
+    }
+
+    .doc-file {
+        background: #fff6ef;
+        color: #b35300;
+        padding: 3px 8px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .doc-note {
+        background: #fff9dd;
+        border: 1px solid #f1e4a2;
+        color: #7a6400;
+        border-radius: 12px;
+        padding: 14px 16px;
+        margin-top: 14px;
+    }
+
+    .doc-details {
+        border: 1px solid #ececec;
+        border-radius: 14px;
+        background: #fff;
+        margin-top: 14px;
+        overflow: hidden;
+    }
+
+    .doc-details summary {
+        cursor: pointer;
+        padding: 16px 18px;
+        font-weight: 700;
+        background: #fafafa;
+    }
+
+    .doc-details-content {
+        padding: 18px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="doc-page">
+    <section class="doc-box">
+        <h1>Documentacao do projeto</h1>
+        <p>Guia criado por Max para ajudar quem for continuar o projeto depois. A ideia aqui e mostrar onde mexer, o que cada arquivo faz e o que tomar cuidado para nao quebrar outra parte sem querer.</p>
+        <div class="doc-note">
+            Se quiser abrir essa pagina depois, use <strong>/documentacao</strong> no navegador.
+        </div>
+    </section>
+
+    <section class="doc-box">
+        <h2>1. Nomes dos arquivos e o que pode ignorar</h2>
+        <p>Os nomes principais do projeto estao normais e simples. Nao achei nada com cara de nome automatico estranho tipo arquivo de robo.</p>
+        <div class="doc-grid">
+            <div class="doc-card">
+                <h3>Arquivos reais do projeto</h3>
+                <ul>
+                    <li><span class="doc-file">run.py</span> abre o servidor.</li>
+                    <li><span class="doc-file">app/templates/*.html</span> sao as paginas.</li>
+                    <li><span class="doc-file">app/static/css/*.css</span> sao os visuais.</li>
+                    <li><span class="doc-file">app/static/js/*.js</span> sao as interacoes.</li>
+                    <li><span class="doc-file">app/routes</span>, <span class="doc-file">controllers</span>, <span class="doc-file">services</span> e <span class="doc-file">models</span> sao o backend.</li>
+                </ul>
+            </div>
+            <div class="doc-card">
+                <h3>Arquivos gerados automaticamente</h3>
+                <ul>
+                    <li><span class="doc-file">__pycache__</span> e criado pelo Python.</li>
+                    <li><span class="doc-file">server.out.log</span> e <span class="doc-file">server.err.log</span> aparecem quando o servidor e iniciado pelo terminal.</li>
+                    <li><span class="doc-file">app/database/doa_ja.db</span> e o banco local gerado a partir do SQL.</li>
+                </ul>
+            </div>
+            <div class="doc-card">
+                <h3>Arquivos de referencia</h3>
+                <ul>
+                    <li><span class="doc-file">arquivos novos/</span> guarda o material original usado como base visual.</li>
+                    <li><span class="doc-file">estrutura.html</span> pode servir de apoio, mas nao e a pagina usada pelo Flask.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="doc-box">
+        <h2>2. Nome das paginas e onde cada uma fica</h2>
+        <table class="doc-table">
+            <tr>
+                <th>Pagina</th>
+                <th>Arquivo</th>
+                <th>Onde mexer no visual</th>
+                <th>Onde mexer na logica</th>
+            </tr>
+            <tr>
+                <td>Pagina inicial</td>
+                <td><span class="doc-file">app/templates/index.html</span></td>
+                <td><span class="doc-file">app/static/css/style.css</span></td>
+                <td><span class="doc-file">app/static/js/app.js</span> e <span class="doc-file">app/controllers/home_controller.py</span></td>
+            </tr>
+            <tr>
+                <td>Login</td>
+                <td><span class="doc-file">app/templates/login.html</span></td>
+                <td><span class="doc-file">app/static/css/auth.css</span></td>
+                <td><span class="doc-file">app/controllers/auth_controller.py</span> e <span class="doc-file">app/services/auth_service.py</span></td>
+            </tr>
+            <tr>
+                <td>Registro</td>
+                <td><span class="doc-file">app/templates/register.html</span></td>
+                <td><span class="doc-file">app/static/css/auth.css</span></td>
+                <td><span class="doc-file">app/controllers/auth_controller.py</span></td>
+            </tr>
+            <tr>
+                <td>Dashboard</td>
+                <td><span class="doc-file">app/templates/dashboard.html</span></td>
+                <td><span class="doc-file">app/static/css/style.css</span></td>
+                <td><span class="doc-file">app/controllers/home_controller.py</span></td>
+            </tr>
+            <tr>
+                <td>Produto</td>
+                <td><span class="doc-file">app/templates/item_detail.html</span></td>
+                <td><span class="doc-file">app/static/css/style.css</span></td>
+                <td><span class="doc-file">app/controllers/item_controller.py</span> e <span class="doc-file">app/controllers/request_controller.py</span></td>
+            </tr>
+            <tr>
+                <td>Anunciar item</td>
+                <td><span class="doc-file">app/templates/create_item.html</span></td>
+                <td><span class="doc-file">app/static/css/style.css</span></td>
+                <td><span class="doc-file">app/services/item_service.py</span></td>
+            </tr>
+            <tr>
+                <td>Meus anuncios</td>
+                <td><span class="doc-file">app/templates/my_items.html</span></td>
+                <td><span class="doc-file">app/static/css/style.css</span></td>
+                <td><span class="doc-file">app/controllers/item_controller.py</span></td>
+            </tr>
+            <tr>
+                <td>Meus pedidos</td>
+                <td><span class="doc-file">app/templates/my_requests.html</span></td>
+                <td><span class="doc-file">app/static/css/style.css</span></td>
+                <td><span class="doc-file">app/controllers/request_controller.py</span></td>
+            </tr>
+            <tr>
+                <td>Chat</td>
+                <td><span class="doc-file">app/templates/chat.html</span></td>
+                <td><span class="doc-file">app/static/css/style.css</span></td>
+                <td><span class="doc-file">app/static/js/app.js</span></td>
+            </tr>
+            <tr>
+                <td>Perfil</td>
+                <td><span class="doc-file">app/templates/profile.html</span></td>
+                <td><span class="doc-file">app/static/css/style.css</span></td>
+                <td><span class="doc-file">app/controllers/home_controller.py</span></td>
+            </tr>
+            <tr>
+                <td>Admin</td>
+                <td><span class="doc-file">app/templates/admin/*.html</span></td>
+                <td><span class="doc-file">app/static/css/style.css</span></td>
+                <td><span class="doc-file">app/controllers/admin_controller.py</span></td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="doc-box">
+        <h2>3. Arquivos raiz</h2>
+
+        <div class="doc-details">
+            <summary>run.py</summary>
+            <div class="doc-details-content">
+                <p>Esse arquivo e o ponto de partida. Quando alguem roda <strong>python run.py</strong>, e ele que chama a aplicacao Flask.</p>
+                <ul>
+                    <li><strong>app = create_app()</strong>: cria a aplicacao principal.</li>
+                    <li><strong>app.run(...)</strong>: sobe o servidor local.</li>
+                </ul>
+                <p>Se precisar trocar host, porta ou debug, o lugar mais facil e aqui.</p>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>requirements.txt</summary>
+            <div class="doc-details-content">
+                <p>Guarda as bibliotecas do projeto. Hoje a principal e o Flask.</p>
+                <p>Se instalar algo novo, adiciona aqui para o outro integrante conseguir rodar tambem.</p>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>readme.md</summary>
+            <div class="doc-details-content">
+                <p>Explica como rodar o projeto e quais usuarios de teste existem. Sempre atualize esse arquivo quando mudar a forma de iniciar ou os logins.</p>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>estrutura.html e pasta arquivos novos</summary>
+            <div class="doc-details-content">
+                <p>Esses arquivos servem de referencia visual. O projeto rodando no navegador nao usa direto esses arquivos. Se mudar alguma coisa neles, a tela real do Flask nao muda automaticamente.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="doc-box">
+        <h2>4. Arquivo principal do app</h2>
+
+        <div class="doc-details">
+            <summary>app/main.py</summary>
+            <div class="doc-details-content">
+                <p><strong>create_app()</strong>: cria o Flask, coloca a chave da sessao, inicia o banco e registra as blueprints.</p>
+                <p>Se uma rota nova nao estiver aparecendo, normalmente o erro esta aqui ou no arquivo de rotas que nao foi importado.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="doc-box">
+        <h2>5. Rotas</h2>
+        <p>Os arquivos de rota so servem para ligar uma URL a uma funcao do controller. Eles costumam ser curtos.</p>
+
+        <div class="doc-details">
+            <summary>app/routes/home_routes.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>index()</strong>: abre a pagina inicial.</li>
+                    <li><strong>dashboard()</strong>: abre o dashboard.</li>
+                    <li><strong>chat()</strong>: abre o chat.</li>
+                    <li><strong>profile()</strong>: abre o perfil do usuario logado.</li>
+                    <li><strong>public_profile(usuario_id)</strong>: abre o perfil publico de um usuario.</li>
+                    <li><strong>documentation()</strong>: abre esta pagina de documentacao.</li>
+                    <li><strong>admin_dashboard_redirect()</strong>: manda para a area admin.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/routes/auth_routes.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>login()</strong>: rota de entrar.</li>
+                    <li><strong>register()</strong>: rota de cadastro.</li>
+                    <li><strong>logout()</strong>: rota para sair da conta.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/routes/item_routes.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>items()</strong>: lista geral dos anuncios.</li>
+                    <li><strong>item_detail(item_id)</strong>: abre um produto.</li>
+                    <li><strong>create_item()</strong>: tela e envio do anuncio.</li>
+                    <li><strong>my_items()</strong>: mostra os anuncios do usuario.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/routes/request_routes.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>request_item(item_id)</strong>: envia pedido de doacao.</li>
+                    <li><strong>my_requests()</strong>: lista pedidos feitos.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/routes/admin_routes.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>dashboard()</strong>: painel principal do admin.</li>
+                    <li><strong>users()</strong>: lista usuarios.</li>
+                    <li><strong>items()</strong>: lista anuncios.</li>
+                    <li><strong>requests()</strong>: lista pedidos.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="doc-box">
+        <h2>6. Controllers</h2>
+        <p>Controller recebe a rota e decide qual pagina abrir, qual service chamar e para onde redirecionar.</p>
+
+        <div class="doc-details">
+            <summary>app/controllers/home_controller.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>index()</strong>: pega os itens e manda para a home.</li>
+                    <li><strong>dashboard()</strong>: exige login, monta resumo e listas do usuario.</li>
+                    <li><strong>chat()</strong>: abre a pagina do chat.</li>
+                    <li><strong>profile()</strong>: pega dados do usuario logado.</li>
+                    <li><strong>public_profile(usuario_id)</strong>: pega dados de outro usuario.</li>
+                    <li><strong>documentation()</strong>: abre esta pagina HTML.</li>
+                </ul>
+                <p>Se uma tela estiver abrindo sem dados ou com dados errados, o primeiro lugar para olhar costuma ser aqui.</p>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/controllers/auth_controller.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>login()</strong>: verifica se ja esta logado, recebe email e senha do formulario, chama o service e salva a sessao.</li>
+                    <li><strong>register()</strong>: recebe os dados do cadastro e chama o service para salvar.</li>
+                    <li><strong>logout()</strong>: limpa a sessao.</li>
+                </ul>
+                <p>Cuidado com as chaves da sessao: <strong>user_id</strong>, <strong>user_name</strong> e <strong>user_type</strong>. Elas controlam o menu e as permissoes.</p>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/controllers/item_controller.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>items()</strong>: manda a lista geral para a pagina.</li>
+                    <li><strong>item_detail(item_id)</strong>: busca um item pelo id.</li>
+                    <li><strong>create_item()</strong>: trata o formulario de anuncio.</li>
+                    <li><strong>my_items()</strong>: traz os anuncios do usuario.</li>
+                </ul>
+                <p>Se o formulario de anuncio parar de salvar, olha primeiro esse arquivo e depois o <span class="doc-file">item_service.py</span>.</p>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/controllers/request_controller.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>request_item(item_id)</strong>: recebe a mensagem e pede a doacao.</li>
+                    <li><strong>my_requests()</strong>: lista os pedidos do usuario.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/controllers/admin_controller.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>dashboard()</strong>: mostra resumo do admin.</li>
+                    <li><strong>users()</strong>: abre tabela de usuarios.</li>
+                    <li><strong>items()</strong>: abre tabela de anuncios.</li>
+                    <li><strong>requests()</strong>: abre tabela de pedidos.</li>
+                </ul>
+                <p>Esse arquivo sempre checa se a pessoa logada e admin antes de abrir as telas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="doc-box">
+        <h2>7. Services</h2>
+        <p>Service e a parte das regras. Ele valida, arruma os dados e chama o model.</p>
+
+        <div class="doc-details">
+            <summary>app/services/auth_service.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>login_user(email, senha)</strong>: valida campos e procura o usuario no banco.</li>
+                    <li><strong>register_user(...)</strong>: valida nome, email, senha, tipo e localizacao.</li>
+                    <li><strong>get_user_by_id(user_id)</strong>: pega um usuario pelo id.</li>
+                </ul>
+                <p>Se quiser deixar senha mais forte ou mudar as validacoes, mexa aqui.</p>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/services/item_service.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>list_items()</strong>: lista todos os itens.</li>
+                    <li><strong>get_item_by_id(item_id)</strong>: pega um item.</li>
+                    <li><strong>list_items_by_user(user_id)</strong>: pega itens de um usuario.</li>
+                    <li><strong>create_item(formulario, user_id, user_name)</strong>: valida e salva anuncio novo.</li>
+                    <li><strong>get_dashboard_data()</strong>: calcula total, doados e restantes.</li>
+                </ul>
+                <p>Cuidado com as variaveis <strong>nome</strong>, <strong>localizacao</strong>, <strong>foto</strong>, <strong>descricao</strong>, <strong>doador_nome</strong>, <strong>categoria</strong> e <strong>avaliacao</strong>. Elas vem do formulario.</p>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/services/request_service.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>create_request(item_id, user_id, mensagem)</strong>: impede pedir item proprio, impede item indisponivel e impede pedido repetido.</li>
+                    <li><strong>list_requests_by_user(user_id)</strong>: lista pedidos do usuario.</li>
+                    <li><strong>count_requests_by_user(user_id)</strong>: conta pedidos.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/services/admin_service.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>get_admin_data()</strong>: pega os numeros do painel admin.</li>
+                    <li><strong>list_users()</strong>: lista usuarios.</li>
+                    <li><strong>list_items()</strong>: lista anuncios.</li>
+                    <li><strong>list_requests()</strong>: lista pedidos.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="doc-box">
+        <h2>8. Models</h2>
+        <p>Model e a parte que conversa direto com o banco SQLite.</p>
+
+        <div class="doc-details">
+            <summary>app/models/user_model.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>get_user_by_email_and_password(email, senha)</strong>: busca usuario para login.</li>
+                    <li><strong>get_user_by_email(email)</strong>: busca por email.</li>
+                    <li><strong>get_user_by_id(user_id)</strong>: busca por id.</li>
+                    <li><strong>list_users()</strong>: lista usuarios.</li>
+                    <li><strong>create_user(...)</strong>: salva usuario novo.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/models/item_model.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>list_items()</strong>: lista anuncios com nome do dono.</li>
+                    <li><strong>get_item_by_id(item_id)</strong>: busca anuncio pelo id.</li>
+                    <li><strong>list_items_by_user(user_id)</strong>: lista anuncios de um usuario.</li>
+                    <li><strong>create_item(...)</strong>: salva no banco.</li>
+                    <li><strong>count_all_items()</strong>: conta todos.</li>
+                    <li><strong>count_donated_items()</strong>: conta status doado.</li>
+                    <li><strong>count_available_items()</strong>: conta disponivel.</li>
+                </ul>
+                <p>Se mudar nome de coluna no SQL, esse arquivo quase sempre precisa mudar tambem.</p>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/models/donation_request_model.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>create_request(...)</strong>: salva pedido.</li>
+                    <li><strong>find_request(...)</strong>: ve se ja existe pedido igual.</li>
+                    <li><strong>list_requests_by_user(user_id)</strong>: lista pedidos do usuario.</li>
+                    <li><strong>list_all_requests()</strong>: lista tudo para o admin.</li>
+                    <li><strong>count_requests_by_user(user_id)</strong>: conta pedidos.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/models/admin_model.py</summary>
+            <div class="doc-details-content">
+                <p><strong>get_admin_data()</strong>: conta usuarios, anuncios e pedidos para mostrar no painel.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="doc-box">
+        <h2>9. Banco e arquivos auxiliares</h2>
+
+        <div class="doc-details">
+            <summary>app/database/connection.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>get_connection()</strong>: abre conexao com o SQLite.</li>
+                    <li><strong>init_database()</strong>: le o schema.sql e cria o banco se precisar.</li>
+                </ul>
+                <p>Se o banco quebrar, apaga o arquivo <span class="doc-file">app/database/doa_ja.db</span> e sobe o projeto de novo.</p>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/database/schema.sql</summary>
+            <div class="doc-details-content">
+                <p>Cria as tabelas <strong>usuarios</strong>, <strong>anuncios</strong> e <strong>solicitacoes</strong>. Tambem deixa usuarios e anuncios iniciais para teste.</p>
+                <p>Se quiser mudar os cards da home quando o banco for recriado, mexa nos <strong>INSERT INTO anuncios</strong> daqui.</p>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/utils/validators.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>text_is_filled(texto)</strong>: ve se o campo esta vazio.</li>
+                    <li><strong>email_is_valid(email)</strong>: faz validacao simples de email.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/utils/helpers.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>normalize_text(valor)</strong>: limpa espacos e evita None.</li>
+                    <li><strong>get_default_image(link)</strong>: escolhe imagem padrao se o campo vier vazio.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/utils/security.py</summary>
+            <div class="doc-details-content">
+                <ul>
+                    <li><strong>user_is_logged()</strong>: ve se tem usuario na sessao.</li>
+                    <li><strong>user_is_admin()</strong>: ve se o tipo e admin.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="doc-box">
+        <h2>10. Templates HTML</h2>
+        <p>Esses arquivos montam as paginas. Se quiser mudar titulo, textos, botoes, ordem dos blocos ou nomes exibidos na tela, normalmente o lugar e aqui.</p>
+
+        <table class="doc-table">
+            <tr>
+                <th>Arquivo</th>
+                <th>Uso</th>
+                <th>O que mexer aqui</th>
+                <th>Cuidado</th>
+            </tr>
+            <tr>
+                <td><span class="doc-file">base.html</span></td>
+                <td>Layout base com navbar, footer e scripts.</td>
+                <td>Muda menu, logo, rodape e estrutura comum.</td>
+                <td>Se tirar um bloco do base, afeta todas as paginas.</td>
+            </tr>
+            <tr>
+                <td><span class="doc-file">index.html</span></td>
+                <td>Pagina principal.</td>
+                <td>Barra de busca, filtros e cards da home.</td>
+                <td>Os filtros usam o atributo <strong>data-filter</strong>. Se mudar o nome da categoria, muda no banco e no JS tambem.</td>
+            </tr>
+            <tr>
+                <td><span class="doc-file">login.html</span></td>
+                <td>Tela de login.</td>
+                <td>Campos, textos, botoes e usuarios de teste exibidos.</td>
+                <td>Os nomes dos inputs precisam continuar como <strong>email</strong> e <strong>senha</strong>.</td>
+            </tr>
+            <tr>
+                <td><span class="doc-file">register.html</span></td>
+                <td>Tela de cadastro.</td>
+                <td>Campos do formulario de registro.</td>
+                <td>Os nomes dos inputs precisam bater com o controller.</td>
+            </tr>
+            <tr>
+                <td><span class="doc-file">dashboard.html</span></td>
+                <td>Painel do usuario.</td>
+                <td>Cards de resumo e listas do usuario.</td>
+                <td>Usa variaveis <strong>resumo</strong>, <strong>meus_itens</strong> e <strong>meus_pedidos</strong>.</td>
+            </tr>
+            <tr>
+                <td><span class="doc-file">create_item.html</span></td>
+                <td>Formulario de anuncio.</td>
+                <td>Campos, labels e preview da foto.</td>
+                <td>Os names do form precisam continuar iguais aos que o service espera.</td>
+            </tr>
+            <tr>
+                <td><span class="doc-file">item_list.html</span></td>
+                <td>Lista geral de produtos.</td>
+                <td>Visual dos cards fora da home.</td>
+                <td>Usa a variavel <strong>itens</strong>.</td>
+            </tr>
+            <tr>
+                <td><span class="doc-file">item_detail.html</span></td>
+                <td>Detalhe do produto.</td>
+                <td>Descricao, bloco do doador e formulario de pedido.</td>
+                <td>Usa a variavel <strong>item</strong>. Se mudar nome de campo do banco, ajusta aqui.</td>
+            </tr>
+            <tr>
+                <td><span class="doc-file">my_items.html</span></td>
+                <td>Lista dos anuncios do usuario.</td>
+                <td>Visual da grade de anuncios proprios.</td>
+                <td>Usa a variavel <strong>itens</strong>.</td>
+            </tr>
+            <tr>
+                <td><span class="doc-file">my_requests.html</span></td>
+                <td>Lista de pedidos.</td>
+                <td>Cards dos pedidos feitos.</td>
+                <td>Usa a variavel <strong>pedidos</strong>.</td>
+            </tr>
+            <tr>
+                <td><span class="doc-file">chat.html</span></td>
+                <td>Chat visual.</td>
+                <td>Estrutura da conversa e lista lateral.</td>
+                <td>O envio visual depende dos ids <strong>chat-form</strong>, <strong>chat-input</strong> e <strong>chat-messages</strong>.</td>
+            </tr>
+            <tr>
+                <td><span class="doc-file">profile.html</span></td>
+                <td>Perfil do usuario e perfil publico.</td>
+                <td>Nome, bio, tags e lista de anuncios.</td>
+                <td>Usa <strong>usuario</strong>, <strong>itens</strong> e <strong>publico</strong>.</td>
+            </tr>
+            <tr>
+                <td><span class="doc-file">admin/*.html</span></td>
+                <td>Telas da area admin.</td>
+                <td>Tabelas e numeros do painel.</td>
+                <td>Qualquer mudanca aqui costuma depender tambem do admin controller e admin service.</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="doc-box">
+        <h2>11. CSS</h2>
+        <div class="doc-details">
+            <summary>app/static/css/style.css</summary>
+            <div class="doc-details-content">
+                <p>E o CSS principal do site. Ele controla navbar, home, cards, dashboard, perfil, admin e chat.</p>
+                <ul>
+                    <li><strong>.navbar</strong>: menu do topo.</li>
+                    <li><strong>.search-section</strong>: bloco da busca da home.</li>
+                    <li><strong>.filter-btn</strong>: botoes de filtro.</li>
+                    <li><strong>.home-card</strong>: card da home no estilo do modelo.</li>
+                    <li><strong>.card</strong>: card base usado em outras paginas.</li>
+                    <li><strong>.badge-*</strong>: cores dos status.</li>
+                </ul>
+                <p>Se quiser mudar o visual da pagina principal, comece por esse arquivo e pelo <span class="doc-file">index.html</span>.</p>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/static/css/auth.css</summary>
+            <div class="doc-details-content">
+                <p>Controla login e registro.</p>
+                <ul>
+                    <li><strong>.auth-body</strong>: fundo da tela.</li>
+                    <li><strong>.auth-card</strong>: cartao branco central.</li>
+                    <li><strong>.input-group</strong>: grupo de campo com icone.</li>
+                    <li><strong>.btn-primary-auth</strong>: botao laranja.</li>
+                </ul>
+                <p>Se login e registro mudarem muito, provavelmente esse arquivo e o <span class="doc-file">login.html</span> vao ser editados juntos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="doc-box">
+        <h2>12. JavaScript</h2>
+        <div class="doc-details">
+            <summary>app/static/js/app.js</summary>
+            <div class="doc-details-content">
+                <p>Esse JS cuida do menu mobile, da busca, dos filtros, do preview da foto e do chat visual.</p>
+                <ul>
+                    <li><strong>mobileMenu</strong>: botao do menu em tela pequena.</li>
+                    <li><strong>navLinks</strong>: lista de links da navbar.</li>
+                    <li><strong>searchInput</strong>: input da busca da home.</li>
+                    <li><strong>filterButtons</strong>: botoes das categorias.</li>
+                    <li><strong>cards</strong>: cards da home filtrados pelo JS.</li>
+                    <li><strong>currentFilter</strong>: categoria atual selecionada.</li>
+                    <li><strong>updateItems()</strong>: funcao que esconde e mostra cards.</li>
+                    <li><strong>fotoInput</strong> e <strong>fotoPreview</strong>: atualizam a imagem do anuncio enquanto digita.</li>
+                    <li><strong>chatForm</strong>, <strong>chatInput</strong> e <strong>chatMessages</strong>: fazem o chat visual funcionar.</li>
+                </ul>
+                <p>Cuidado para nao mudar ids do HTML sem ajustar esse arquivo.</p>
+            </div>
+        </div>
+
+        <div class="doc-details">
+            <summary>app/static/js/auth.js</summary>
+            <div class="doc-details-content">
+                <p>So controla o botao de mostrar ou esconder senha.</p>
+                <ul>
+                    <li><strong>buttons</strong>: botoes com classe <strong>toggle-password</strong>.</li>
+                    <li><strong>data-target</strong>: id do input que sera alterado.</li>
+                </ul>
+                <p>Se mudar o id do campo de senha no HTML, muda o <strong>data-target</strong> junto.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="doc-box">
+        <h2>13. Arquivos simples de organizacao</h2>
+        <p>Os arquivos <span class="doc-file">__init__.py</span> em varias pastas servem so para o Python reconhecer a pasta como pacote. Eles nao tem regra de negocio.</p>
+        <p>Os arquivos <span class="doc-file">.gitkeep</span> servem so para manter pasta vazia no Git. Tambem nao tem logica.</p>
+    </section>
+
+    <section class="doc-box">
+        <h2>14. Dicas para quem vai editar</h2>
+        <ul>
+            <li>Para mudar visual da home: mexa primeiro em <span class="doc-file">app/templates/index.html</span> e <span class="doc-file">app/static/css/style.css</span>.</li>
+            <li>Para mudar o menu inteiro: mexa em <span class="doc-file">app/templates/base.html</span>.</li>
+            <li>Para mudar login e cadastro: mexa em <span class="doc-file">login.html</span>, <span class="doc-file">register.html</span> e <span class="doc-file">auth.css</span>.</li>
+            <li>Para mudar usuarios de teste ou itens iniciais: mexa em <span class="doc-file">app/database/schema.sql</span> e depois recrie o banco.</li>
+            <li>Se adicionar campo novo no banco, normalmente precisa mudar SQL, model, service, controller e template.</li>
+            <li>Se uma pagina abre mas sem dado, olha a ordem: rota, controller, service, model, template.</li>
+        </ul>
+    </section>
+</main>
+{% endblock %}

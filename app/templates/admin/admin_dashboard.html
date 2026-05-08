@@ -1,1 +1,69 @@
+{% extends "base.html" %}
 
+{% block title %}Admin - Doa Ja{% endblock %}
+
+{% block content %}
+<main class="page">
+    <section class="page-header">
+        <div>
+            <h1>Area admin</h1>
+            <p>Painel simples para acompanhar usuarios, anuncios e pedidos.</p>
+        </div>
+        <div class="page-actions">
+            <a href="{{ url_for('admin.users') }}" class="btn-secondary-page">Usuarios</a>
+            <a href="{{ url_for('admin.items') }}" class="btn-secondary-page">Anuncios</a>
+            <a href="{{ url_for('admin.requests') }}" class="btn-secondary-page">Pedidos</a>
+        </div>
+    </section>
+
+    <section class="stats-grid">
+        <article class="stat-card">
+            <span>Usuarios</span>
+            <strong>{{ resumo['total_usuarios'] }}</strong>
+            <p>Total de usuarios no banco.</p>
+        </article>
+        <article class="stat-card">
+            <span>Anuncios</span>
+            <strong>{{ resumo['total_anuncios'] }}</strong>
+            <p>Total de anuncios cadastrados.</p>
+        </article>
+        <article class="stat-card">
+            <span>Pedidos</span>
+            <strong>{{ resumo['total_pedidos'] }}</strong>
+            <p>Total de solicitacoes feitas.</p>
+        </article>
+    </section>
+
+    <section class="two-columns">
+        <div class="panel">
+            <h2>Usuarios</h2>
+            <ul class="simple-list">
+                {% for usuario in usuarios %}
+                    <li>
+                        <div>
+                            <strong>{{ usuario['nome'] }}</strong>
+                            <span>{{ usuario['email'] }}</span>
+                        </div>
+                        <span class="badge">{{ usuario['tipo'] }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="panel">
+            <h2>Pedidos recentes</h2>
+            <ul class="simple-list">
+                {% for pedido in pedidos %}
+                    <li>
+                        <div>
+                            <strong>{{ pedido['nome_anuncio'] }}</strong>
+                            <span>{{ pedido['nome_solicitante'] }}</span>
+                        </div>
+                        <span class="badge badge-{{ pedido['status'] }}">{{ pedido['status'] }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+</main>
+{% endblock %}

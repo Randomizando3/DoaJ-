@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doa Ja</title>
+    <link rel="icon" type="image/png" href="img/logo-minimalista.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <img src="img/logo.png" alt="Logo Doa Ja">
+        </a>
+
+        <button class="menu-toggle" id="mobile-menu" type="button">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> INICIO</a></li>
+            <li><a href="chat.html"><i class="fas fa-comments"></i> CHAT</a></li>
+            <li><a href="meus-anuncios.html"><i class="fas fa-list"></i> MEUS ANUNCIOS</a></li>
+            <li><a href="anunciar.html" class="btn-anunciar"><i class="fas fa-plus-circle"></i> ANUNCIAR GRATIS</a></li>
+            <li><a href="login.html" class="btn-login" id="login-icon" title="Entrar"><i class="fas fa-user"></i></a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="search-section">
+            <div class="search-bar">
+                <input type="text" id="busca-item" placeholder="Estou procurando por...">
+                <button type="button"><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="filters">
+                <button class="filter-btn active" type="button" data-filter="todos">Todos</button>
+                <button class="filter-btn" type="button" data-filter="brinquedo"><i class="fas fa-gamepad"></i> Brinquedo</button>
+                <button class="filter-btn" type="button" data-filter="camiseta"><i class="fas fa-shirt"></i> Camiseta</button>
+                <button class="filter-btn" type="button" data-filter="calca"><i class="fas fa-socks"></i> Calca</button>
+                <button class="filter-btn" type="button" data-filter="calcado"><i class="fas fa-shoe-prints"></i> Calcado</button>
+            </div>
+        </section>
+
+        <section class="products-section">
+            <div class="grid" id="product-grid"></div>
+            <p class="hidden" id="empty-items">Nenhum produto encontrado.</p>
+        </section>
+    </main>
+
+    <footer class="footer-mini">
+        <div class="footer-content">
+            <p>&copy; 2026 Doa Ja | Versao sem backend</p>
+            <div class="footer-links">
+                <a href="index.html">Inicio</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="login.html">Login</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/dados.js"></script>
+    <script src="js/site.js"></script>
+</body>
+</html>

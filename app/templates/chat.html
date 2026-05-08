@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Chat - Doa Ja{% endblock %}
+
+{% block content %}
+<main class="page">
+    <section class="page-header">
+        <div>
+            <h1>Chat</h1>
+            <p>Tela visual para a conversa entre quem doa e quem pede.</p>
+        </div>
+    </section>
+
+    <section class="chat-layout">
+        <div class="chat-sidebar panel">
+            <h2>Conversas</h2>
+            <ul class="chat-users">
+                <li class="active">Carlos Doador</li>
+                <li>Mariana Receptora</li>
+                <li>Admin Doa Ja</li>
+            </ul>
+        </div>
+
+        <div class="chat-box panel">
+            <div class="chat-messages" id="chat-messages">
+                <div class="message received">Oi, vi seu anuncio e tenho interesse.</div>
+                <div class="message sent">Claro, podemos combinar a retirada.</div>
+            </div>
+
+            <form id="chat-form" class="chat-form">
+                <input type="text" id="chat-input" placeholder="Digite sua mensagem">
+                <button type="submit" class="btn-primary-page">Enviar</button>
+            </form>
+        </div>
+    </section>
+</main>
+{% endblock %}

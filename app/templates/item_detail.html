@@ -1,1 +1,44 @@
+{% extends "base.html" %}
 
+{% block title %}Produto - Doa Ja{% endblock %}
+
+{% block content %}
+<main class="page">
+    <section class="detail-layout">
+        <div class="detail-image">
+            <img src="{{ item['foto'] }}" alt="{{ item['nome'] }}">
+        </div>
+
+        <div class="detail-info">
+            <span class="badge badge-{{ item['status'] }}">{{ item['status'] }}</span>
+            <h1>{{ item['nome'] }}</h1>
+            <p class="detail-text">{{ item['descricao'] }}</p>
+
+            <ul class="detail-list">
+                <li><strong>Categoria:</strong> {{ item['categoria'] }}</li>
+                <li><strong>Localizacao:</strong> {{ item['localizacao'] }}</li>
+                <li><strong>Doador:</strong> {{ item['doador_nome'] }}</li>
+                <li><strong>Avaliacao:</strong> {{ item['avaliacao_doador'] }}</li>
+            </ul>
+
+            <div class="detail-actions">
+                <a href="{{ url_for('home.public_profile', usuario_id=item['usuario_id']) }}" class="btn-secondary-page">Ver perfil publico</a>
+            </div>
+
+            {% if session.get('user_id') and session.get('user_id') != item['usuario_id'] and item['status'] == 'disponivel' %}
+                <form action="{{ url_for('request.request_item', item_id=item['id']) }}" method="post" class="request-form">
+                    <label for="mensagem">Mensagem para o doador</label>
+                    <textarea id="mensagem" name="mensagem" rows="4" placeholder="Escreva uma mensagem simples"></textarea>
+                    <button type="submit" class="btn-primary-page">Quero essa doacao</button>
+                </form>
+            {% elif session.get('user_id') == item['usuario_id'] %}
+                <p class="detail-note">Esse anuncio e seu.</p>
+            {% elif not session.get('user_id') %}
+                <p class="detail-note">Faca login para pedir essa doacao.</p>
+            {% else %}
+                <p class="detail-note">Esse item nao esta disponivel para pedido agora.</p>
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock %}

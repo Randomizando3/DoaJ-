@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Doa Ja</title>
+    <link rel="icon" type="image/png" href="img/logo-minimalista.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo"><img src="img/logo.png" alt="Logo Doa Ja"></a>
+        <button class="menu-toggle" id="mobile-menu" type="button"><i class="fas fa-bars"></i></button>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> INICIO</a></li>
+            <li><a href="chat.html"><i class="fas fa-comments"></i> CHAT</a></li>
+            <li><a href="meus-anuncios.html"><i class="fas fa-list"></i> MEUS ANUNCIOS</a></li>
+            <li><a href="anunciar.html" class="btn-anunciar"><i class="fas fa-plus-circle"></i> ANUNCIAR GRATIS</a></li>
+            <li><a href="perfil.html" class="btn-login" id="login-icon"><i class="fas fa-user"></i></a></li>
+        </ul>
+    </nav>
+
+    <main class="page">
+        <section class="page-header">
+            <div>
+                <h1>Dashboard</h1>
+                <p>Resumo visual usando dados fixos do JavaScript.</p>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <article class="stat-card"><span>Total</span><strong id="total-itens">0</strong><p>Total de itens cadastrados.</p></article>
+            <article class="stat-card"><span>Doados</span><strong id="itens-doados">0</strong><p>Itens marcados como doados.</p></article>
+            <article class="stat-card"><span>Restantes</span><strong id="itens-restantes">0</strong><p>Itens ainda disponiveis.</p></article>
+            <article class="stat-card"><span>Pedidos</span><strong id="meus-pedidos">0</strong><p>Pedidos de teste.</p></article>
+        </section>
+    </main>
+
+    <script src="js/dados.js"></script>
+    <script src="js/site.js"></script>
+</body>
+</html>

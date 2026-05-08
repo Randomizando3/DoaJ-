@@ -1,1 +1,69 @@
+{% extends "base.html" %}
 
+{% block title %}Anunciar - Doa Ja{% endblock %}
+
+{% block content %}
+<main class="page">
+    <section class="page-header">
+        <div>
+            <h1>Novo anuncio</h1>
+            <p>Formulario simples para cadastrar um produto para doacao.</p>
+        </div>
+    </section>
+
+    <section class="form-card">
+        <form method="post" class="item-form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="nome">Nome do produto</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="localizacao">Localizacao</label>
+                    <input type="text" id="localizacao" name="localizacao" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="foto">Foto (link)</label>
+                    <input type="text" id="foto" name="foto" placeholder="https://">
+                </div>
+
+                <div class="form-group">
+                    <label for="categoria">Categoria</label>
+                    <select id="categoria" name="categoria" required>
+                        <option value="">Escolha</option>
+                        <option value="brinquedo">Brinquedo</option>
+                        <option value="roupa">Roupa</option>
+                        <option value="calcado">Calcado</option>
+                        <option value="moveis">Moveis</option>
+                        <option value="eletrodomestico">Eletrodomestico</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="doador_nome">Doador (se terceiros)</label>
+                    <input type="text" id="doador_nome" name="doador_nome" placeholder="Se deixar vazio, vai seu nome">
+                </div>
+
+                <div class="form-group">
+                    <label for="avaliacao_doador">Avaliacao do doador</label>
+                    <input type="text" id="avaliacao_doador" name="avaliacao_doador" placeholder="5.0">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="descricao">Descricao</label>
+                <textarea id="descricao" name="descricao" rows="6" required></textarea>
+            </div>
+
+            <div class="image-preview-box">
+                <p>Preview da foto</p>
+                <img id="foto-preview" src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=900&q=80" alt="Preview da foto">
+            </div>
+
+            <button type="submit" class="btn-primary-page">Salvar anuncio</button>
+        </form>
+    </section>
+</main>
+{% endblock %}

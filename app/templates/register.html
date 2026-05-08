@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Doa Ja</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='img/logo-minimalista.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body class="auth-body">
+    <a href="{{ url_for('home.index') }}" class="btn-voltar" title="Voltar">
+        <i class="fas fa-arrow-left"></i>
+    </a>
 
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="{{ url_for('home.index') }}" class="logo-text">Doa Ja</a>
+                <p>Cadastro com o mesmo visual da tela de login.</p>
+            </div>
+
+            {% with mensagens = get_flashed_messages() %}
+                {% if mensagens %}
+                    <div class="auth-alerts">
+                        {% for mensagem in mensagens %}
+                            <div class="auth-alert">{{ mensagem }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form method="post" class="auth-form-page">
+                <div class="input-group">
+                    <i class="fas fa-user icon"></i>
+                    <input type="text" name="nome" placeholder="Nome completo" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-envelope icon"></i>
+                    <input type="email" name="email" placeholder="Seu email" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-lock icon"></i>
+                    <input type="password" name="senha" id="register-senha" placeholder="Crie uma senha" required>
+                    <button class="toggle-password" type="button" data-target="register-senha">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-location-dot icon"></i>
+                    <input type="text" name="localizacao" placeholder="Sua cidade" required>
+                </div>
+
+                <div class="input-group select-group">
+                    <i class="fas fa-users icon"></i>
+                    <select name="tipo" required>
+                        <option value="receptor">Quero receber doacao</option>
+                        <option value="doador">Quero doar itens</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-primary-auth">Criar conta</button>
+
+                <div class="auth-links">
+                    <a href="{{ url_for('auth.login') }}">Ja tenho conta</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+</body>
+</html>

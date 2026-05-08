@@ -1,1 +1,39 @@
+{% extends "base.html" %}
 
+{% block title %}Admin Anuncios - Doa Ja{% endblock %}
+
+{% block content %}
+<main class="page">
+    <section class="page-header">
+        <div>
+            <h1>Anuncios</h1>
+            <p>Todos os anuncios cadastrados na plataforma.</p>
+        </div>
+    </section>
+
+    <section class="table-card">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Produto</th>
+                    <th>Dono</th>
+                    <th>Categoria</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in itens %}
+                    <tr>
+                        <td>{{ item['id'] }}</td>
+                        <td>{{ item['nome'] }}</td>
+                        <td>{{ item['nome_usuario'] }}</td>
+                        <td>{{ item['categoria'] }}</td>
+                        <td>{{ item['status'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</main>
+{% endblock %}

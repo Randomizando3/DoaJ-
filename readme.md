@@ -15,6 +15,7 @@ Projeto academico simples para cadastro e busca de itens de doacao.
 - Perfil do usuario e perfil publico.
 - Chat visual.
 - Area admin simples.
+- Versao sem backend para abrir direto pelo navegador.
 
 ## Tecnologias
 
@@ -25,56 +26,183 @@ Projeto academico simples para cadastro e busca de itens de doacao.
 - CSS
 - JavaScript
 
-## Como rodar
+## Passo a passo para iniciar o projeto completo
 
-1. Tenha o Python 3 instalado.
-2. Abra o terminal na pasta do projeto.
-3. Instale as dependencias:
+### 1. Baixar o Python
+
+1. Entre no site oficial:
+
+```text
+https://www.python.org/downloads/
+```
+
+2. Baixe a versao mais recente do Python para Windows.
+3. Na instalacao, marque a opcao:
+
+```text
+Add python.exe to PATH
+```
+
+4. Depois de instalar, abra o PowerShell e teste:
+
+```bash
+python --version
+```
+
+Se aparecer a versao do Python, deu certo.
+
+### 2. Baixar o Git
+
+1. Entre no site oficial:
+
+```text
+https://git-scm.com/downloads
+```
+
+2. Instale o Git.
+3. Depois teste no PowerShell:
+
+```bash
+git --version
+```
+
+### 3. Clonar o projeto
+
+Escolha uma pasta no computador e rode:
+
+```bash
+git clone https://github.com/Randomizando3/DoaJ-.git
+```
+
+Depois entre na pasta:
+
+```bash
+cd DoaJ-
+```
+
+Se o projeto ja estiver baixado no computador, basta abrir o PowerShell dentro da pasta do projeto.
+
+### 4. Instalar as dependencias
+
+Dentro da pasta do projeto, rode:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Rode o projeto:
+Esse comando instala o Flask, que e usado para rodar o backend.
+
+### 5. Iniciar o projeto
+
+Rode:
 
 ```bash
 python run.py
 ```
 
-5. Abra no navegador:
+Depois abra no navegador:
 
 ```text
 http://127.0.0.1:5000
 ```
 
-## Usuarios de teste
+### 6. Parar o projeto
 
-- Admin
-  - Email: `admin@doaja.com`
-  - Senha: `123456`
-- Doador
-  - Email: `doador@doaja.com`
-  - Senha: `123456`
-- Receptor
-  - Email: `receptor@doaja.com`
-  - Senha: `123456`
+No terminal onde o projeto esta rodando, aperte:
 
-Esses usuarios sao criados pelo arquivo [app/database/schema.sql](/D:/PROJETOS/004%20-%20PIM%20FATEC/app/database/schema.sql) quando o sistema inicia.
+```text
+CTRL + C
+```
 
-## Arquivos principais para editar
+## Usuarios de teste do projeto completo
 
-- [run.py](/D:/PROJETOS/004%20-%20PIM%20FATEC/run.py): ponto de entrada.
-- [app/main.py](/D:/PROJETOS/004%20-%20PIM%20FATEC/app/main.py): cria a aplicacao Flask.
-- [app/database/connection.py](/D:/PROJETOS/004%20-%20PIM%20FATEC/app/database/connection.py): conexao com SQLite.
-- [app/database/schema.sql](/D:/PROJETOS/004%20-%20PIM%20FATEC/app/database/schema.sql): tabelas e usuarios iniciais.
-- [app/routes](</D:/PROJETOS/004%20-%20PIM%20FATEC/app/routes>): rotas da aplicacao.
-- [app/controllers](</D:/PROJETOS/004%20-%20PIM%20FATEC/app/controllers>): controle das paginas.
-- [app/services](</D:/PROJETOS/004%20-%20PIM%20FATEC/app/services>): regras simples de negocio.
-- [app/models](</D:/PROJETOS/004%20-%20PIM%20FATEC/app/models>): consultas no banco.
-- [app/templates](</D:/PROJETOS/004%20-%20PIM%20FATEC/app/templates>): paginas HTML.
-- [app/static/css/style.css](/D:/PROJETOS/004%20-%20PIM%20FATEC/app/static/css/style.css): estilo geral.
-- [app/static/css/auth.css](/D:/PROJETOS/004%20-%20PIM%20FATEC/app/static/css/auth.css): estilo do login e registro.
-- [app/static/js/app.js](/D:/PROJETOS/004%20-%20PIM%20FATEC/app/static/js/app.js): menu, busca, filtros, preview da foto e chat.
+- Admin: `admin@doaja.com` / `123456`
+- Doador: `doador@doaja.com` / `123456`
+- Receptor: `receptor@doaja.com` / `123456`
+
+Esses usuarios sao criados pelo arquivo `app/database/schema.sql` quando o sistema inicia.
+
+## Como recriar o banco
+
+Se quiser apagar dados de teste e voltar para o inicio:
+
+1. Pare o projeto com `CTRL + C`.
+2. Apague o arquivo:
+
+```text
+app/database/doa_ja.db
+```
+
+3. Rode de novo:
+
+```bash
+python run.py
+```
+
+## Versao sem backend
+
+Tambem existe uma versao simples para editar rapido, sem Python, sem Flask e sem SQLite.
+
+Ela fica na pasta:
+
+```text
+versao_sem_backend
+```
+
+Para usar:
+
+1. Abra a pasta `versao_sem_backend`.
+2. Abra o arquivo `index.html` no navegador.
+3. Para testar login, use:
+
+```text
+admin@doaja.com / 123456
+doador@doaja.com / 123456
+receptor@doaja.com / 123456
+```
+
+Essa versao usa dados fixos no JavaScript. O login nao consulta banco de dados. Ela serve para colegas mexerem em HTML, CSS e JS mais rapido.
+
+## Como mandar a versao sem backend por ZIP
+
+Foi criado o arquivo:
+
+```text
+doa-ja-sem-backend.zip
+```
+
+Quem receber esse ZIP precisa apenas extrair a pasta e abrir:
+
+```text
+index.html
+```
+
+## Arquivos principais para editar no projeto completo
+
+- `run.py`: ponto de entrada.
+- `app/main.py`: cria a aplicacao Flask.
+- `app/database/connection.py`: conexao com SQLite.
+- `app/database/schema.sql`: tabelas e usuarios iniciais.
+- `app/routes`: rotas da aplicacao.
+- `app/controllers`: controle das paginas.
+- `app/services`: regras simples de negocio.
+- `app/models`: consultas no banco.
+- `app/templates`: paginas HTML.
+- `app/static/css/style.css`: estilo geral.
+- `app/static/css/auth.css`: estilo do login e registro.
+- `app/static/js/app.js`: menu, busca, filtros, preview da foto e chat.
+
+## Arquivos principais para editar na versao sem backend
+
+- `versao_sem_backend/index.html`: pagina inicial.
+- `versao_sem_backend/login.html`: login fake com JavaScript.
+- `versao_sem_backend/registro.html`: cadastro visual.
+- `versao_sem_backend/produto.html`: pagina de produto.
+- `versao_sem_backend/anunciar.html`: formulario visual de anuncio.
+- `versao_sem_backend/css/style.css`: visual geral.
+- `versao_sem_backend/css/auth.css`: visual do login e cadastro.
+- `versao_sem_backend/js/dados.js`: usuarios e produtos fixos.
+- `versao_sem_backend/js/site.js`: menu, busca, filtros e login fake.
 
 ## Estrutura basica
 
@@ -88,8 +216,11 @@ app/
   static/
   templates/
   utils/
+
+versao_sem_backend/
+  css/
+  img/
+  js/
+  index.html
+  login.html
 ```
-
-## Observacao
-
-O banco e iniciado automaticamente ao abrir o projeto. Se quiser limpar tudo e recriar os dados iniciais, basta apagar o arquivo `app/database/doa_ja.db` e rodar o `python run.py` de novo.
