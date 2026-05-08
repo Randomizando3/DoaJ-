@@ -24,12 +24,13 @@
 
         <ul class="nav-links" id="nav-links">
             <li><a href="{{ url_for('home.index') }}"><i class="fas fa-home"></i> INICIO</a></li>
-            <li><a href="{{ url_for('home.chat') }}"><i class="fas fa-comments"></i> CHAT</a></li>
-            <li><a href="{{ url_for('item.my_items') }}"><i class="fas fa-list"></i> MEUS ANUNCIOS</a></li>
-            <li><a href="{{ url_for('item.create_item') }}" class="btn-anunciar"><i class="fas fa-plus-circle"></i> ANUNCIAR GRATIS</a></li>
             {% if session.get('user_id') %}
+                <li><a href="{{ url_for('home.chat') }}"><i class="fas fa-comments"></i> CHAT</a></li>
+                <li><a href="{{ url_for('item.my_items') }}"><i class="fas fa-list"></i> MEUS ANUNCIOS</a></li>
+                <li><a href="{{ url_for('item.create_item') }}" class="btn-anunciar"><i class="fas fa-plus-circle"></i> ANUNCIAR GRATIS</a></li>
                 <li><a href="{{ url_for('home.profile') }}" class="btn-login" title="Perfil"><i class="fas fa-user"></i></a></li>
             {% else %}
+                <li><a href="{{ url_for('item.create_item') }}" class="btn-anunciar"><i class="fas fa-plus-circle"></i> ANUNCIAR GRATIS</a></li>
                 <li><a href="{{ url_for('auth.login') }}" class="btn-login" title="Entrar"><i class="fas fa-user"></i></a></li>
             {% endif %}
         </ul>
@@ -53,7 +54,9 @@
             <div class="footer-links">
                 <a href="{{ url_for('home.index') }}">Inicio</a>
                 <a href="{{ url_for('item.items') }}">Produtos</a>
-                <a href="{{ url_for('home.chat') }}">Chat</a>
+                {% if session.get('user_id') %}
+                    <a href="{{ url_for('home.chat') }}">Chat</a>
+                {% endif %}
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-github"></i></a>
             </div>

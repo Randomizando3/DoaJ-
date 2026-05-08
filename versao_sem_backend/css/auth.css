@@ -5,6 +5,10 @@
     font-family: "Inter", sans-serif;
 }
 
+.hidden {
+    display: none;
+}
+
 .auth-body {
     min-height: 100vh;
     background: #f5f6fa;

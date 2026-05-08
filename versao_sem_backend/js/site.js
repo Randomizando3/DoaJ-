@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    protegerPaginasPrivadas();
     montarMenu();
     montarHome();
     montarDashboard();
@@ -13,6 +14,30 @@ document.addEventListener("DOMContentLoaded", function () {
     ligarChat();
     ligarSenha();
 });
+
+function protegerPaginasPrivadas() {
+    var usuario = pegarUsuarioLogado();
+    var arquivo = window.location.pathname.split("/").pop();
+    var paginasPrivadas = [
+        "chat.html",
+        "anunciar.html",
+        "meus-anuncios.html",
+        "meus-pedidos.html",
+        "dashboard.html",
+        "perfil.html",
+        "admin.html"
+    ];
+    var i = 0;
+
+    while (i < paginasPrivadas.length) {
+        if (arquivo === paginasPrivadas[i] && !usuario) {
+            window.location.href = "login.html";
+            return;
+        }
+
+        i = i + 1;
+    }
+}
 
 function pegarUsuarioLogado() {
     var texto = localStorage.getItem("usuarioLogado");
@@ -38,6 +63,7 @@ function montarMenu() {
     var navLinks = document.getElementById("nav-links");
     var loginIcon = document.getElementById("login-icon");
     var usuario = pegarUsuarioLogado();
+    var linksPrivados = document.querySelectorAll('a[href="chat.html"], a[href="meus-anuncios.html"]');
 
     if (mobileMenu && navLinks) {
         mobileMenu.addEventListener("click", function () {
@@ -48,6 +74,15 @@ function montarMenu() {
     if (loginIcon && usuario) {
         loginIcon.href = "perfil.html";
         loginIcon.title = usuario.nome;
+    }
+
+    if (!usuario) {
+        var i = 0;
+
+        while (i < linksPrivados.length) {
+            linksPrivados[i].parentElement.classList.add("hidden");
+            i = i + 1;
+        }
     }
 }
 
